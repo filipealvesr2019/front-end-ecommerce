@@ -21,7 +21,7 @@ const Home = () => {
 
   return (
     <div>
-      {location.pathname === "/home" && (
+      {location.pathname === "/" && (
              <Helmet>
              <title>Home - Loja Mediewal</title>
              <meta

@@ -140,7 +140,7 @@ const Header = () => {
             
             <div className={styles.child}>
               <i>
-                <Link to={"/home"}>
+                <Link to={"/"}>
                   <img
                     src="https://i.ibb.co/B3xYDzG/Logo-mediewal-1.png"
                     alt="Logo da Mediewal"
@@ -369,7 +369,7 @@ const Header = () => {
       <div className={styles.MobileHeader__Container}>
             <div>
               <i>
-                <Link to={"/home"}>
+                <Link to={"/"}>
                   <img
                     src="https://i.ibb.co/B3xYDzG/Logo-mediewal-1.png"
                     alt="Logo da Mediewal"

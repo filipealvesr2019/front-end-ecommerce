@@ -148,7 +148,7 @@ const SignUpForm = () => {
       
       if (response.data) {
 
-        navigate("/home");
+        navigate("/");
       }
 
       // Você pode redirecionar o usuário ou realizar outras ações após o envio bem-sucedido

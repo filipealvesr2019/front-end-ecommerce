@@ -53,8 +53,8 @@ const Root = () => (
     <CircularIndeterminate />
     </div>}>
     <Routes>
-      <Route path="/" element={<App />} />
-      <Route path="/home" element={<Home />} />
+      <Route path="/app" element={<App />} />
+      <Route path="/" element={<Home />} />
       <Route path="/categorias" element={<Categories />} />
       <Route path="/categoriasMobile" element={<CategoriesMobile />} />
       <Route path="/favoritos" element={<Heart />} />

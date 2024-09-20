@@ -24,7 +24,7 @@ const Navbar = () => {
   return (
     <div className="hide">
       <div className="navbar">
-        <Link to={"/home"} className={`nav-item ${isActive(0)} `}>
+        <Link to={"/"} className={`nav-item ${isActive(0)} `}>
           <img src="https://i.ibb.co/J3gLZnz/home-4.png"  alt="icone de home(inicio)"/>
           <span className="span">Home</span>
         </Link>
