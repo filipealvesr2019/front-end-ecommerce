@@ -500,7 +500,7 @@ const CategorySubcategories = () => {
                         >
                           <Link
                             to={{
-                              pathname: `/products/${product._id}`,
+                              pathname: `/products/${product.name}/${product._id}`,
                               search: `?${queryParams.toString()}`,
                             }}
                             style={{ color: "black", textDecoration: "none" }}

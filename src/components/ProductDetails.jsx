@@ -26,7 +26,7 @@ import { useConfig } from "../context/ConfigContext";
 import { logPageView } from "../../analytics";
 import { Helmet } from "react-helmet";
 const ProductDetails = () => {
-  const { productId } = useParams();
+  const { productId, name } = useParams();
   const [product, setProduct] = useState({ variations: [] });
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [sizesFromDatabase, setSizesFromDatabase] = useState([]);
@@ -121,7 +121,7 @@ const ProductDetails = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`${apiUrl}/api/product/${productId}`, {
+        const response = await axios.get(`${apiUrl}/api/product/${name}/${productId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
