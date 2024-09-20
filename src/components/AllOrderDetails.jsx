@@ -218,7 +218,7 @@ const AllOrderDetails = () => {
               <div>
                 {order.products.map((product, prodIndex) => (
                   <>
-                    <Link to={`/products/${product.productId}`} style={{ textDecoration: "none", color: "inherit" }}>
+                    <Link to={`/products/${product.name}/${product.productId}`} style={{ textDecoration: "none", color: "inherit" }}>
                       <div key={prodIndex} className={styles.boletoContainer__card}>
                         <img
                           src={product.image}
@@ -366,7 +366,7 @@ const AllOrderDetails = () => {
                 <div>
                   {order.products.map((product, prodIndex) => (
                     <>
-                      <Link to={`/products/${product.productId}`} style={{ textDecoration: "none", color: "inherit" }}>
+                      <Link to={`/products/${product.name}/${product.productId}`} style={{ textDecoration: "none", color: "inherit" }}>
 
                         <div key={prodIndex} className={styles.boletoContainer__card}>
                           <img
@@ -502,7 +502,7 @@ const AllOrderDetails = () => {
               <div>
                 {order.products.map((product, prodIndex) => (
                   <>
-                    <Link to={`/products/${product.productId}`} style={{ textDecoration: "none", color: "inherit" }}>
+                    <Link to={`/products/${product.name}/${product.productId}`} style={{ textDecoration: "none", color: "inherit" }}>
                       <div key={prodIndex} className={styles.boletoContainer__card}>
                         <img
                           src={product.image}

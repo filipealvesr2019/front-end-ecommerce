@@ -52,7 +52,7 @@ const Heart = () => {
       <ul className={styles.HeartUL}>
         {favorites.map((favorite) => (
           <div key={favorite._id} className={styles.Heartfavorite}>
-            <Link to={`/products/${favorite._id}`} className={styles.HeartLink}>
+            <Link to={`/products/${favorite.name}/${favorite._id}`} className={styles.HeartLink}>
               <img
                 src={favorite.variations[0].urls[0]}
                 alt="icone dos fovoritos"

@@ -37,7 +37,7 @@ const DiscountProductsByCategoryAndPorcentage = () => {
           <div key={product._id}>
             <Header></Header>
             <Navbar></Navbar>
-            <Link to={`/products/${product._id}`}>
+            <Link to={`/products/${product.name}/${product._id}`}>
               <img src={product.variations[0].urls[0]} alt={product.name} />
               <h2>{product.name}</h2>
              

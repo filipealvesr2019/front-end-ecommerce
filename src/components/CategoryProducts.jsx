@@ -35,7 +35,7 @@ const CategoryProducts = () => {
       <ul className={styles.CategoryProducts}>
         {products.map(product => (
           
-          <Link to={`/products/${product._id}`} key={product._id} className={styles.CategoryProducts__productcard}>
+          <Link to={`/products/${product.name}/${product._id}`} key={product._id} className={styles.CategoryProducts__productcard}>
             <li className={styles.CategoryProducts__productcard} >
  
                         <img src={product.variations[0].urls[0]} alt={product.name} className={styles.CategoryProducts__image} />

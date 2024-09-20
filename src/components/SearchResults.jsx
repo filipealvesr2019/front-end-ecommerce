@@ -385,7 +385,7 @@ const SearchResults = () => {
                   {searchResults.map((product) => (
                     <li key={product._id} className={styles.li}>
                       <Link
-                        to={`/products/${product._id}`}
+                        to={`/products/${product.name}/${product._id}`}
                         style={{
                       
                           color: "black",

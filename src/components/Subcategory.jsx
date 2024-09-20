@@ -75,7 +75,7 @@ const Subcategory = () => {
         }}
       >
         {products.map((product) => (
-          <Link to={`/products/${product._id}`} key={product._id}>
+          <Link to={`/products/${product.name}/${product._id}`} key={product._id}>
             <li>
               <img
                 src={product.variations[0].urls[0]}
