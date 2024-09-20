@@ -52,7 +52,8 @@ const ProductDetails = () => {
   const [changeUrlLink, setChangeUrlLink] = useState(0);
   const { apiUrl } = useConfig();
   const location = useLocation();
-
+  console.log('Product ID:', productId);
+  console.log('Product Name:', name);
   useEffect(() => {
     logPageView();
   }, [location]);
@@ -120,8 +121,10 @@ const ProductDetails = () => {
 
   useEffect(() => {
     const fetchProduct = async () => {
+      const encodedProductName = encodeURIComponent(name);
+
       try {
-        const response = await axios.get(`${apiUrl}/api/product/${name}/${productId}`, {
+        const response = await axios.get(`${apiUrl}/api/product/${encodedProductName}/${productId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

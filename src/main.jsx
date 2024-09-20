@@ -61,7 +61,7 @@ const Root = () => (
       <Route path="/carrinho" element={<Cart />} />
       <Route path="/perfil" element={<Profile />} />
       <Route path="/conta" element={<MobileProfile />} />
-      <Route path="/products/:name/productId" element={<ProductDetails />} />
+      <Route path="/products/:name/:productId" element={<ProductDetails />} />
       <Route path="/payment/:quantity/:shippingFee/:totalPrice" element={<Pay />} />
       <Route path="/categories/:category" element={<CategorySubcategories />} />
       <Route path="/categories/:category/:subcategory" element={<Subcategory />} />
