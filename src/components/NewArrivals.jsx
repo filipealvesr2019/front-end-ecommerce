@@ -71,7 +71,7 @@ const NewArrivals = ({ onNewArrivalsUpdate }) => {
                 <div className="IconToggleContainer">
                   <IconToggle productId={product._id}  />
                 </div>
-                <Link to={`/products/${product.name}?${product._id}`} className="LinkContainer">
+                <Link to={`/products/${product.name}/${product._id}`} className="LinkContainer">
                   {product.variations &&
                     product.variations[0] &&
                     product.variations[0].urls && (
