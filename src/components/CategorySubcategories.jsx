@@ -47,6 +47,7 @@ const CategorySubcategories = () => {
   const { apiUrl } = useConfig();
   const location = useLocation();
 
+console.log(category)
   useEffect(() => {
     logPageView();
   }, [location]);
@@ -164,6 +165,8 @@ const CategorySubcategories = () => {
     updateHideProducts(size, selectedColor);
   };
 
+
+  
   const updateHideProducts = (size, color) => {
     if (size && !color) {
       setHideProducts(true); // Mostrar ProductList quando apenas o tamanho é selecionado
@@ -173,6 +176,13 @@ const CategorySubcategories = () => {
       setHideProducts(false); // Mostrar produtos misturados por padrão
     }
   };
+  const formatCategoryForURL = (category) => {
+    return category
+      .trim() // Remove espaços em branco no início e no fim
+      .toLowerCase() // Converte para minúsculas
+      .replace(/\s+/g, "-") // Substitui espaços por hífens
+      .replace(/[^\w\-]+/g, ""); // Remove caracteres não permitidos (exceto hífens)
+};
 
   const fetchMixedProducts = async (page, filters) => {
     setLoading(true);
@@ -413,6 +423,12 @@ const CategorySubcategories = () => {
   const filteredProductsContent = filteredProducts.length;
   const [content, setContent] = useState("1");
 
+  const formatProductNameForURL = (name) => {
+    return name
+      .toLowerCase() // Convert to lowercase
+      .replace(/\s+/g, "-") // Replace spaces with hyphens
+      .replace(/[^\w\-]+/g, ""); // Remove any non-word characters (except hyphens)
+  };
   const renderContent = () => {
     switch (content) {
       case "1":
@@ -500,7 +516,7 @@ const CategorySubcategories = () => {
                         >
                           <Link
                             to={{
-                              pathname: `/products/${product.name}/${product._id}`,
+                              pathname: `/products/${formatProductNameForURL(product.name)}/${product._id}`,
                               search: `?${queryParams.toString()}`,
                             }}
                             style={{ color: "black", textDecoration: "none" }}

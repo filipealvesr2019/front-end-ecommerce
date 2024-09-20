@@ -8,10 +8,16 @@ const CategoryProducts = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const { apiUrl } = useConfig();
+  const formatcategoryForURL = (name) => {
+    return name
+      .toLowerCase() // Convert to lowercase
+      .replace(/\s+/g, "-") // Replace spaces with hyphens
+      .replace(/[^\w\-]+/g, ""); // Remove any non-word characters (except hyphens)
+  };
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch(`${apiUrl}/api/subcategoriesAndProductsByName/${category}/${subcategory}`);
+        const response = await fetch(`${apiUrl}/api/subcategoriesAndProductsByName/${formatcategoryForURL(category)}/${formatcategoryForURL(subcategory)}`);
         const data = await response.json();
         setProducts(data);
         setLoading(false);
@@ -28,7 +34,7 @@ const CategoryProducts = () => {
   if (loading) {
     return <p>Carregando produtos...</p>;
   }
-
+ 
   return (
     <div>
       <h1>{subcategory} Products</h1>

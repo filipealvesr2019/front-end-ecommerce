@@ -54,7 +54,13 @@ const NewArrivals = ({ onNewArrivalsUpdate }) => {
   const handlePageChange = (event, page) => {
     setCurrentPage(page);
   };
-
+  const formatProductNameForURL = (name) => {
+    return name
+      .toLowerCase() // Convert to lowercase
+      .replace(/\s+/g, "-") // Replace spaces with hyphens
+      .replace(/[^\w\-]+/g, ""); // Remove any non-word characters (except hyphens)
+  };
+  
   return (
     <div>
    
@@ -71,7 +77,7 @@ const NewArrivals = ({ onNewArrivalsUpdate }) => {
                 <div className="IconToggleContainer">
                   <IconToggle productId={product._id}  />
                 </div>
-                <Link to={`/products/${product.name}/${product._id}`} className="LinkContainer">
+                <Link to={`/products/${formatProductNameForURL(product.name)}/${product._id}`} className="LinkContainer">
                   {product.variations &&
                     product.variations[0] &&
                     product.variations[0].urls && (

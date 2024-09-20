@@ -101,7 +101,7 @@ const ImageGallery = () => {
                   subcategoryImages.map((image) => (
                     <div key={image._id}>
                       <Link
-                        to={`/categories/${encodeURIComponent(category.name)}`}
+                        to={`/categories/${category.name}`}
                       >
                         <img
                           src={image.imageUrl}
