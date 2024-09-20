@@ -537,11 +537,12 @@ const ProductDetails = () => {
           theme="light"
           style={{ marginTop: "8rem" }}
         />
+      
         <Helmet>
-          <title>Detalhes do Produto - Loja Mediewal</title>
+          <title>{product.name}</title>
           <meta
             name="description"
-            content="Veja as últimas novidades em nossa loja, com uma seleção de produtos novos."
+            content={`${product.description}`}
           />
         </Helmet>
         <div style={{ position: "absolute", zIndex: "2" }}>
