@@ -124,7 +124,7 @@ const ImageGallery = () => {
                           color: "#666",
                         }}
                       >
-                        {category.name}
+                     {category.name.replace(/-/g, " ")}
                       </span>
                     </div>
                   ))
