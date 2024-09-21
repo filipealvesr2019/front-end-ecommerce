@@ -37,6 +37,17 @@ const Heart = () => {
   }, [loggedIn, userId]);
 
   const charLimit = 24;
+// Função para remover acentos
+const removeAccents = (name) => {
+  return name
+  .normalize("NFD") // Normaliza a string para decompor caracteres acentuados
+  .replace(/[\u0300-\u036f]/g, "") // Remove os diacríticos (acentos)
+  .toLowerCase() // Converte para letras minúsculas
+  .replace(/\s+/g, "-") // Substitui espaços por hífens
+  .replace(/[^\w\-]+/g, ""); // Remove caracteres não alfanuméricos (exceto hífens)
+};
+
+
 
   return (
     <div className={styles.HeartContainer}>
@@ -52,7 +63,7 @@ const Heart = () => {
       <ul className={styles.HeartUL}>
         {favorites.map((favorite) => (
           <div key={favorite._id} className={styles.Heartfavorite}>
-            <Link to={`/products/${favorite.name}/${favorite._id}`} className={styles.HeartLink}>
+            <Link to={`/products/${removeAccents(favorite.name)}/${favorite._id}`} className={styles.HeartLink}>
               <img
                 src={favorite.variations[0].urls[0]}
                 alt="icone dos fovoritos"

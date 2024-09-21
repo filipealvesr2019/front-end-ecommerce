@@ -346,6 +346,16 @@ const SearchResults = () => {
   const handlePageChange = (event, page) => {
     setCurrentPage(page);
   };
+// Função para remover acentos
+// Função para remover acentos
+const removeAccents = (name) => {
+  return name
+  .normalize("NFD") // Normaliza a string para decompor caracteres acentuados
+  .replace(/[\u0300-\u036f]/g, "") // Remove os diacríticos (acentos)
+  .toLowerCase() // Converte para letras minúsculas
+  .replace(/\s+/g, "-") // Substitui espaços por hífens
+  .replace(/[^\w\-]+/g, ""); // Remove caracteres não alfanuméricos (exceto hífens)
+};
 
   return (
     <div >
@@ -385,7 +395,7 @@ const SearchResults = () => {
                   {searchResults.map((product) => (
                     <li key={product._id} className={styles.li}>
                       <Link
-                        to={`/products/${product.name}/${product._id}`}
+                        to={`/products/${removeAccents(product.name)}/${product._id}`}
                         style={{
                       
                           color: "black",

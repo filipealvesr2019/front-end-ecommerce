@@ -35,7 +35,7 @@ const Subcategory = () => {
     try {
       const response = await fetch(`${apiUrl}/api/subcategoriesAndProducts/${category}/${subcategory}`);
       const { totalPages } = await response.json();
-  
+      
       setTotalPages(totalPages);
     } catch (error) {
       console.error('Erro ao obter total de páginas:', error);
@@ -51,7 +51,12 @@ const Subcategory = () => {
   const handlePageChange = (event, value) => {
     setCurrentPage(value);
   };
-
+// Função para remover acentos
+const removeAccents = (str) => {
+  return str
+    .normalize("NFD") // Normaliza a string para decompor caracteres acentuados
+    .replace(/[\u0300-\u036f]/g, ""); // Remove os diacríticos (acentos)
+};
   return (
     <div>
       <Header/>
@@ -75,7 +80,7 @@ const Subcategory = () => {
         }}
       >
         {products.map((product) => (
-          <Link to={`/products/${product.name}/${product._id}`} key={product._id}>
+          <Link to={`/products/${removeAccents(product.name)}/${product._id}`} key={product._id}>
             <li>
               <img
                 src={product.variations[0].urls[0]}

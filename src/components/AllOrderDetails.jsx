@@ -102,6 +102,15 @@ const AllOrderDetails = () => {
   useEffect(() => {
     logPageView();
   }, [location]);
+    // Função para remover acentos
+const removeAccents = (name) => {
+  return name
+  .normalize("NFD") // Normaliza a string para decompor caracteres acentuados
+  .replace(/[\u0300-\u036f]/g, "") // Remove os diacríticos (acentos)
+  .toLowerCase() // Converte para letras minúsculas
+  .replace(/\s+/g, "-") // Substitui espaços por hífens
+  .replace(/[^\w\-]+/g, ""); // Remove caracteres não alfanuméricos (exceto hífens)
+};
   return (
     <>
       <Header />
@@ -218,7 +227,7 @@ const AllOrderDetails = () => {
               <div>
                 {order.products.map((product, prodIndex) => (
                   <>
-                    <Link to={`/products/${product.name}/${product.productId}`} style={{ textDecoration: "none", color: "inherit" }}>
+                    <Link to={`/products/${removeAccents(product.name)}/${product.productId}`} style={{ textDecoration: "none", color: "inherit" }}>
                       <div key={prodIndex} className={styles.boletoContainer__card}>
                         <img
                           src={product.image}
@@ -366,7 +375,7 @@ const AllOrderDetails = () => {
                 <div>
                   {order.products.map((product, prodIndex) => (
                     <>
-                      <Link to={`/products/${product.name}/${product.productId}`} style={{ textDecoration: "none", color: "inherit" }}>
+                      <Link to={`/products/${removeAccents(product.name)}/${product.productId}`} style={{ textDecoration: "none", color: "inherit" }}>
 
                         <div key={prodIndex} className={styles.boletoContainer__card}>
                           <img
@@ -502,7 +511,7 @@ const AllOrderDetails = () => {
               <div>
                 {order.products.map((product, prodIndex) => (
                   <>
-                    <Link to={`/products/${product.name}/${product.productId}`} style={{ textDecoration: "none", color: "inherit" }}>
+                    <Link to={`/products/${removeAccents(product.name)}/${product.productId}`} style={{ textDecoration: "none", color: "inherit" }}>
                       <div key={prodIndex} className={styles.boletoContainer__card}>
                         <img
                           src={product.image}

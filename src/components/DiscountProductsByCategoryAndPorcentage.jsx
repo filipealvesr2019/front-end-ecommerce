@@ -28,6 +28,18 @@ const DiscountProductsByCategoryAndPorcentage = () => {
     // Arredonda o preço para duas casas decimais e formata como moeda brasileira
     return parseFloat(price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
   };
+
+
+  // Função para remover acentos
+const removeAccents = (name) => {
+  return name
+  .normalize("NFD") // Normaliza a string para decompor caracteres acentuados
+  .replace(/[\u0300-\u036f]/g, "") // Remove os diacríticos (acentos)
+  .toLowerCase() // Converte para letras minúsculas
+  .replace(/\s+/g, "-") // Substitui espaços por hífens
+  .replace(/[^\w\-]+/g, ""); // Remove caracteres não alfanuméricos (exceto hífens)
+};
+  
   return (
     <div>
       <Header/>
@@ -37,7 +49,7 @@ const DiscountProductsByCategoryAndPorcentage = () => {
           <div key={product._id}>
             <Header></Header>
             <Navbar></Navbar>
-            <Link to={`/products/${product.name}/${product._id}`}>
+            <Link to={`/products/${removeAccents(product.name)}/${product._id}`}>
               <img src={product.variations[0].urls[0]} alt={product.name} />
               <h2>{product.name}</h2>
              

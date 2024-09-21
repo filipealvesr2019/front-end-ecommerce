@@ -176,13 +176,6 @@ console.log(category)
       setHideProducts(false); // Mostrar produtos misturados por padrão
     }
   };
-  const formatCategoryForURL = (category) => {
-    return category
-      .trim() // Remove espaços em branco no início e no fim
-      .toLowerCase() // Converte para minúsculas
-      .replace(/\s+/g, "-") // Substitui espaços por hífens
-      .replace(/[^\w\-]+/g, ""); // Remove caracteres não permitidos (exceto hífens)
-};
 
   const fetchMixedProducts = async (page, filters) => {
     setLoading(true);
@@ -423,12 +416,15 @@ console.log(category)
   const filteredProductsContent = filteredProducts.length;
   const [content, setContent] = useState("1");
 
-  const formatProductNameForURL = (name) => {
-    return name
-      .toLowerCase() // Convert to lowercase
-      .replace(/\s+/g, "-") // Replace spaces with hyphens
-      .replace(/[^\w\-]+/g, ""); // Remove any non-word characters (except hyphens)
-  };
+       // Função para remover acentos
+const removeAccents = (name) => {
+  return name
+  .normalize("NFD") // Normaliza a string para decompor caracteres acentuados
+  .replace(/[\u0300-\u036f]/g, "") // Remove os diacríticos (acentos)
+  .toLowerCase() // Converte para letras minúsculas
+  .replace(/\s+/g, "-") // Substitui espaços por hífens
+  .replace(/[^\w\-]+/g, ""); // Remove caracteres não alfanuméricos (exceto hífens)
+};
   const renderContent = () => {
     switch (content) {
       case "1":
@@ -516,7 +512,7 @@ console.log(category)
                         >
                           <Link
                             to={{
-                              pathname: `/products/${formatProductNameForURL(product.name)}/${product._id}`,
+                              pathname: `/products/${removeAccents(product.name)}/${product._id}`,
                               search: `?${queryParams.toString()}`,
                             }}
                             style={{ color: "black", textDecoration: "none" }}
