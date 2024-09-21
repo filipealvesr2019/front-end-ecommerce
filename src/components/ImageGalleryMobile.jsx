@@ -82,7 +82,7 @@ const ImageGalleryMobile = () => {
                       }}
                     />
                   </Link>
-                  <div style={{ marginTop: "5px" }}>{category.name}</div>
+                  <div style={{ marginTop: "5px" }}>{category.name.replace(/-/g, " ")}</div>
                 </div>
               ))
             )}

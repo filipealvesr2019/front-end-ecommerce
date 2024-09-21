@@ -82,8 +82,7 @@ const ImageGalleryDesktop = () => {
                     />
                   </Link>
                   <div style={{ marginTop: "5px", color: "black" }}>
-                    {category.name}
-                  </div>
+                  {category.name.replace(/-/g, " ")}                  </div>
                 </div>
               ))
             )}
