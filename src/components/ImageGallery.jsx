@@ -62,7 +62,16 @@ const ImageGallery = () => {
 
   const isBackDisabled = currentPage === 0;
   const isForwardDisabled = endIndex >= categories.length;
-
+ const handleCategoryName = (name) => {
+  switch(name){
+    case 'calcao masculino':
+      return 'calção masculino'
+    case 'calcao dri fit':
+      return 'calção dri fit'
+    default:
+      return name
+  }
+ }
   return (
     <>
       {loading ? (
@@ -124,7 +133,7 @@ const ImageGallery = () => {
                           color: "#666",
                         }}
                       >
-                     {category.name.replace(/-/g, " ")}
+                     {handleCategoryName(category.name.replace(/-/g, " "))}
                       </span>
                     </div>
                   ))
