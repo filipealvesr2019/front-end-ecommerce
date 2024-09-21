@@ -208,7 +208,7 @@ const CategoryCarousel = () => {
                         fontWeight: "400",
                       }}
                     >
-                      {category.name}
+                      {category.name.replace(/-/g, " ") }
                     </span>
                   </div>
                 ))}
