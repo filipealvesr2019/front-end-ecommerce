@@ -18,7 +18,7 @@ const SliderContent = () => {
         console.log('Categories Response:', response.data);
 
         if (response.data.categories && Array.isArray(response.data.categories)) {
-          setCategories(response.data.categories.slice(0, 3)); // Mostrar apenas as primeiras três categorias
+          setCategories(response.data.categories.slice(0, 2)); // Mostrar apenas as primeiras três categorias
         } else {
           setCategories([]);
         }
