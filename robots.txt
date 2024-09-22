@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://mediewal.com.br/sitemap.xml https://serveradmin-whhj.onrender.com/sitemap.xml
+Sitemap: https://mediewal.com.br/sitemap.xml
