@@ -5,9 +5,7 @@ import CustomPagination from "./CustomPagination";
 import Header from "./Header";
 import IconToggle from "./IconToggle";
 import styles from "./CategorySubcategories.module.css";
-import TuneIcon from "@mui/icons-material/Tune";
-import CircularIndeterminate from "./CircularIndeterminate";
-import colorMap from "./colorMap";
+
 import Navbar from "./Navbar";
 import CloseIcon from "@mui/icons-material/Close";
 import FilterListIcon from "@mui/icons-material/FilterList";
@@ -30,6 +28,8 @@ const CategorySubcategories = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [favorites, setFavorites] = useState({});
   const [colors, setColors] = useState([]);
+  const [colorMap, setColorMap] = useState([]);
+
   const [sizes, setSizes] = useState([]);
   const [priceRanges, setPriceRanges] = useState([]);
   const [uniqueSizes, setUniqueSizes] = useState(new Set());
@@ -47,7 +47,7 @@ const CategorySubcategories = () => {
   const [priceRange, setPriceRange] = useState([]);
   const { apiUrl } = useConfig();
   const location = useLocation();
-
+  
 console.log(category)
   useEffect(() => {
     logPageView();
@@ -60,12 +60,17 @@ console.log(category)
   const getColors = async () => {
     try {
       const response = await axios.get(`${apiUrl}/api/user/colors`);
-      setColors(response.data.colors);
-      console.log("colors", response.data)
+      const colorsArray = response.data.colors;
+      const colorsObject = colorsArray.reduce((acc, color) => {
+        acc[color.name] = color.color; // Mapeia o name da cor para o valor hexadecimal
+        return acc;
+      }, {});
+      setColorMap(colorsObject);
     } catch (error) {
       console.error("Erro ao obter cores", error);
     }
   };
+  
   useEffect(() => {
     getColors(); // Lista de todas as cores do colorMap
   }, []);
@@ -1109,7 +1114,8 @@ const removeAccents = (name) => {
                     }}
                     className={styles.colorContainer}
                     onClick={() => {
-                      handleColorClick(color), setContent("1");
+                      handleColorClick(color.name); // Usar o name da cor
+                      handleSelectBorder(index);
                     }}
                   >
                     <div
@@ -1117,7 +1123,7 @@ const removeAccents = (name) => {
                         width: "20px",
                         height: "20px",
                         borderRadius: "50%",
-                        backgroundColor: colorMap[color],
+                        backgroundColor: colorMap[color], // Verifique se o valor é válido
                         marginRight: "10px",
                         border: "1px solid rgba(0, 0, 0, 0.05)",
                       }}
