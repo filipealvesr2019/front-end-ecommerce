@@ -17,6 +17,7 @@ import CategorySubcategoriesSkeleton from "./CategorySubcategoriesSkeleton";
 import { useConfig } from "../context/ConfigContext";
 import { logPageView } from "../../analytics";
 import { Helmet } from "react-helmet";
+import axios from "axios";
 const CategorySubcategories = () => {
   const { category } = useParams();
   
@@ -55,8 +56,18 @@ console.log(category)
     setDoubleBorder(index);
   };
 
+  
+  const getColors = async () => {
+    try {
+      const response = await axios.get(`${apiUrl}/api/user/colors`);
+      setColors(response.data.colors);
+      console.log("colors", response.data)
+    } catch (error) {
+      console.error("Erro ao obter cores", error);
+    }
+  };
   useEffect(() => {
-    setColors(Object.keys(colorMap)); // Lista de todas as cores do colorMap
+    getColors(); // Lista de todas as cores do colorMap
   }, []);
 
   const getSizesForColor = (products, color) => {
