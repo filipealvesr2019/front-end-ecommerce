@@ -23,10 +23,10 @@ export default function Footer() {
         <div className="footerSection">
           <h3 className="footerH3">Saiba mais nas nossas redes</h3>
           <div className="footer__social">
-            <a href="https://www.facebook.com/profile.php?id=100078800343826&locale=pt_BR">
+            <a href="https://www.facebook.com/profile.php?id=100078800343826&locale=pt_BR" aria-label="facebook">
               <FacebookOutlinedIcon style={{ width: "35px", height: "35px" }} />
             </a>
-            <a href="https://www.instagram.com/lojamediewal/">
+            <a href="https://www.instagram.com/lojamediewal/"  aria-label="instagram">
               <InstagramIcon style={{ width: "35px", height: "35px" }} />
             </a>
           </div>
