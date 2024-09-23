@@ -24,7 +24,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import FreteSelect from "./FreteSelect";
 import { useConfig } from "../context/ConfigContext";
 import { logPageView } from "../../analytics";
-import { Helmet } from "react-helmet";
+import { HelmetProvider, Helmet } from "react-helmet";
 const ProductDetails = () => {
   const { productId, name } = useParams();
   const [product, setProduct] = useState({ variations: [] });
@@ -540,16 +540,16 @@ const ProductDetails = () => {
           theme="light"
           style={{ marginTop: "8rem" }}
         />
-     
-     {product && (
-  <Helmet>
-    <title>{product.name || "Título Padrão"}</title>
-    <meta
-      name="description"
-      content={product.description || "Descrição do produto não disponível"}
-    />
-  </Helmet>
-)}
+    <HelmetProvider>
+      <Helmet>
+        <title>{product.name || "Título Padrão"}</title>
+        <meta
+          name="description"
+          content={product.description || "Descrição do produto não disponível"}
+        />
+      </Helmet>
+      {/* O restante do seu componente */}
+    </HelmetProvider>
 
         <div style={{ position: "absolute", zIndex: "2" }}>
           <Header />

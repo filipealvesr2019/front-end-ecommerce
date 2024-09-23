@@ -27,6 +27,7 @@
     "react-ga": "^3.3.1",
     "react-heart": "^1.0.6",
     "react-helmet": "^6.1.0",
+    "react-helmet-async": "^2.0.5",
     "react-input-mask": "^2.0.4",
     "react-qr-code": "^2.0.12",
     "react-router-dom": "^6.21.0",
