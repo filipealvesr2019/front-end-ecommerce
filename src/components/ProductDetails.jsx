@@ -552,6 +552,8 @@ const ProductDetails = () => {
                 product.description || "Descrição do produto não disponível"
               }
             />
+
+            
           </Helmet>
           {/* O restante do seu componente */}
  
