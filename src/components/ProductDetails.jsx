@@ -24,7 +24,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import FreteSelect from "./FreteSelect";
 import { useConfig } from "../context/ConfigContext";
 import { logPageView } from "../../analytics";
-import { HelmetProvider, Helmet } from "react-helmet";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 const ProductDetails = () => {
   const { productId, name } = useParams();
   const [product, setProduct] = useState({ variations: [] });
