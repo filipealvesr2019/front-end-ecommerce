@@ -540,14 +540,14 @@ const ProductDetails = () => {
           theme="light"
           style={{ marginTop: "8rem" }}
         />
-      
-        <Helmet>
-          <title>{product.name}</title>
-          <meta
-            name="description"
-            content={`${product.description}`}
-          />
-        </Helmet>
+      <Helmet>
+  <title>{product.name || "Título Padrão"}</title>
+  <meta
+    name="description"
+    content={product.description || "Descrição do produto não disponível"}
+  />
+</Helmet>
+
         <div style={{ position: "absolute", zIndex: "2" }}>
           <Header />
           {openSecondCartModal && (
