@@ -9,6 +9,7 @@ import { AuthProvider } from "./context/AuthContext";
 import { UnreadProvider } from "./context/UnreadContext";
 import { ConfigProvider } from './context/ConfigContext';
 import CircularIndeterminate from "./components/CircularIndeterminate";
+import { HelmetProvider } from "react-helmet-async";
 
 // Lazy load components
 const App = React.lazy(() => import("./App"));
@@ -92,6 +93,8 @@ const Root = () => (
 );
 
 createRoot(document.getElementById("root")).render(
+  <HelmetProvider>
+
   <ConfigProvider>
     <AuthProvider>
       <UnreadProvider>
@@ -111,4 +114,5 @@ createRoot(document.getElementById("root")).render(
       </UnreadProvider>
     </AuthProvider>
   </ConfigProvider>
+  </HelmetProvider>
 );
