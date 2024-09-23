@@ -54,33 +54,44 @@ const NewArrivals = ({ onNewArrivalsUpdate }) => {
   const handlePageChange = (event, page) => {
     setCurrentPage(page);
   };
-// Função para remover acentos
-const removeAccents = (name) => {
-  return name
-  .normalize("NFD") // Normaliza a string para decompor caracteres acentuados
-  .replace(/[\u0300-\u036f]/g, "") // Remove os diacríticos (acentos)
-  .toLowerCase() // Converte para letras minúsculas
-  .replace(/\s+/g, "-") // Substitui espaços por hífens
-  .replace(/[^\w\-]+/g, ""); // Remove caracteres não alfanuméricos (exceto hífens)
-};
-  
+  // Função para remover acentos
+  const removeAccents = (name) => {
+    return name
+      .normalize("NFD") // Normaliza a string para decompor caracteres acentuados
+      .replace(/[\u0300-\u036f]/g, "") // Remove os diacríticos (acentos)
+      .toLowerCase() // Converte para letras minúsculas
+      .replace(/\s+/g, "-") // Substitui espaços por hífens
+      .replace(/[^\w\-]+/g, ""); // Remove caracteres não alfanuméricos (exceto hífens)
+  };
+
   return (
     <div>
-   
       <Navbar />
       {loading ? (
         <NewArrivalsSkeleton /> // Exibir carregamento enquanto os dados não são carregados
       ) : (
         <div style={{ marginTop: "2rem" }}>
-                <h1 style={{ marginBottom: "1rem",fontFamily:"poppins, sans serif", fontSize: "1.2rem ",  marginLeft:"1rem",  }}>Novidades</h1>
+          <h1
+            style={{
+              marginBottom: "1rem",
+              fontFamily: "poppins, sans serif",
+              fontSize: "1.2rem ",
+              marginLeft: "1rem",
+            }}
+          >
+            Novidades
+          </h1>
 
           <ul className="ulContainer">
             {newArrivals.map((product, index) => (
               <li key={product._id} className="liContainer">
                 <div className="IconToggleContainer">
-                  <IconToggle productId={product._id}  />
+                  <IconToggle productId={product._id} />
                 </div>
-                <Link to={`/products/${removeAccents(product.name)}/${product._id}`} className="LinkContainer">
+                <Link
+                  to={`/products/${removeAccents(product.name)}/${product._id}`}
+                  className="LinkContainer"
+                >
                   {product.variations &&
                     product.variations[0] &&
                     product.variations[0].urls && (
@@ -103,7 +114,6 @@ const removeAccents = (name) => {
                           setHoveredIndex(-1)
                         }
                         loading="lazy" // Adiciona lazy loading
-
                       />
                     )}
                   <div style={{ display: "flex", flexDirection: "column" }}>
@@ -113,16 +123,10 @@ const removeAccents = (name) => {
                         fontWeight: "700",
                         fontFamily: "poppins, sans-serif",
                       }}
-                      
                     >
                       R$ {product.variations[0].sizes[0].price}
                     </span>
-                    <span
-                    
-                      className="ulContainer__name"
-                    >
-                      {product.name}
-                    </span>
+                    <span className="ulContainer__name">{product.name}</span>
                   </div>
                 </Link>
               </li>
