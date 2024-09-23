@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import Navbar from "./Navbar";
-import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
@@ -9,7 +8,7 @@ import { useAuth } from "../context/AuthContext";
 import IconToggle from "./IconToggle";
 import "./NewArrivals.css";
 import NewArrivalsSkeleton from "./NewArrivalsSkeleton";
-import zIndex from "@mui/material/styles/zIndex";
+import CircularProgress from "@mui/material/CircularProgress"; // Importar CircularProgress
 import { useConfig } from "../context/ConfigContext";
 import { logPageView } from "../../analytics";
 import { Helmet } from "react-helmet";
@@ -18,32 +17,31 @@ const NewArrivals = ({ onNewArrivalsUpdate }) => {
   const [newArrivals, setNewArrivals] = useState([]);
   const [totalProducts, setTotalProducts] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
-  const { logout, loggedIn } = useAuth(); // Obtendo o userId do contexto de autenticação
-  const [loading, setLoading] = useState(true);
-
-  const [hoveredIndex, setHoveredIndex] = useState(-1); // -1 indica que nenhuma imagem está sendo hoverada
+  const { logout, loggedIn } = useAuth();
+  const [loading, setLoading] = useState(true); // Inicialmente true para exibir o spinner
+  const [hoveredIndex, setHoveredIndex] = useState(-1);
   const { apiUrl } = useConfig();
   const location = useLocation();
 
   useEffect(() => {
     logPageView();
   }, [location]);
+
   useEffect(() => {
     const fetchSearchResults = async () => {
+      setLoading(true); // Define o loading como true ao iniciar a busca
       try {
-        // await new Promise((resolve) => setTimeout(resolve, 10000));
         const response = await fetch(
           `${apiUrl}/api/products/new-arrivals?page=${currentPage}`
         );
         const data = await response.json();
-        console.log("Data from server:", data);
         setNewArrivals(data.newArrivals);
         setTotalProducts(data.totalProducts);
-        onNewArrivalsUpdate(data.newArrivals); // Atualiza o estado no componente pai
+        onNewArrivalsUpdate(data.newArrivals);
 
-        setLoading(false); // Define loading como falso após obter os dados
+        setLoading(false); // Define loading como false após obter os dados
       } catch (error) {
-        setLoading(false); // Definir carregamento como falso após tentativa de buscar dados
+        setLoading(false); // Define loading como false mesmo em caso de erro
         console.error("Erro ao buscar resultados de pesquisa:", error);
       }
     };
@@ -53,22 +51,25 @@ const NewArrivals = ({ onNewArrivalsUpdate }) => {
 
   const handlePageChange = (event, page) => {
     setCurrentPage(page);
+    setLoading(true); // Define o loading como true ao mudar a página
   };
-  // Função para remover acentos
+
   const removeAccents = (name) => {
     return name
-      .normalize("NFD") // Normaliza a string para decompor caracteres acentuados
-      .replace(/[\u0300-\u036f]/g, "") // Remove os diacríticos (acentos)
-      .toLowerCase() // Converte para letras minúsculas
-      .replace(/\s+/g, "-") // Substitui espaços por hífens
-      .replace(/[^\w\-]+/g, ""); // Remove caracteres não alfanuméricos (exceto hífens)
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .replace(/\s+/g, "-")
+      .replace(/[^\w\-]+/g, "");
   };
 
   return (
     <div>
       <Navbar />
       {loading ? (
-        <NewArrivalsSkeleton /> // Exibir carregamento enquanto os dados não são carregados
+        <div style={{ display: "flex", justifyContent: "center", marginTop: "10rem", marginBottom:"10rem" }}>
+          <CircularProgress /> {/* Spinner de loading */}
+        </div>
       ) : (
         <div style={{ marginTop: "2rem" }}>
           <h1
@@ -113,7 +114,7 @@ const NewArrivals = ({ onNewArrivalsUpdate }) => {
                           product.variations[0].urls.length > 1 &&
                           setHoveredIndex(-1)
                         }
-                        loading="lazy" // Adiciona lazy loading
+                        loading="lazy"
                       />
                     )}
                   <div style={{ display: "flex", flexDirection: "column" }}>
