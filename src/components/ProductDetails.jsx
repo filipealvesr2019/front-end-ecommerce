@@ -540,6 +540,7 @@ const ProductDetails = () => {
           theme="light"
           style={{ marginTop: "8rem" }}
         />
+     
       <Helmet>
   <title>{product.name || "Título Padrão"}</title>
   <meta
