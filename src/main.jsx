@@ -43,7 +43,7 @@ const MyOrders = React.lazy(() => import("./components/MyOrders"));
 const OrderDetails = React.lazy(() => import("./components/OrderDetails"));
 const AllOrderDetails = React.lazy(() => import("./components/AllOrderDetails"));
 const MobileProfile = React.lazy(() => import("./components/MobileProfile"));
-
+const helmetContext = {};
 const Root = () => (
   <Suspense fallback={<div style={{
     display:"flex",
@@ -93,7 +93,7 @@ const Root = () => (
 );
 
 createRoot(document.getElementById("root")).render(
-  <HelmetProvider>
+  <HelmetProvider  context={helmetContext}>
 
   <ConfigProvider>
     <AuthProvider>
