@@ -556,7 +556,25 @@ const ProductDetails = () => {
             
           </Helmet>
           {/* O restante do seu componente */}
- 
+          {/* {product && (
+  <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "http://schema.org",
+      "@type": "Product",
+      "name": product.name,
+      "image": product.imageUrl, // Altere para o URL da imagem do produto
+      "description": product.description,
+      "offers": {
+        "@type": "Offer",
+        "url": window.location.href,
+        "priceCurrency": "BRL",
+        "price": product.price, // Substitua pelo preço real
+        "itemCondition": "http://schema.org/NewCondition",
+        "availability": "http://schema.org/InStock"
+      }
+    })}
+  </script>
+)} */}
 
         <div style={{ position: "absolute", zIndex: "2" }}>
           <Header />
@@ -679,7 +697,7 @@ const ProductDetails = () => {
                 /> */}
                 </div>
               ) : (
-                <p>No image available</p>
+                <p></p>
               )}
             </div>
           </div>
