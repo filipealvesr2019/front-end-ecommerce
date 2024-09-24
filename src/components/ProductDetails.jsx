@@ -545,11 +545,11 @@ const ProductDetails = () => {
         />
  
           <Helmet>
-            <title>{product.name || "Título Padrão"}</title>
+            <title>{product.name || "Loja Mediewal"}</title>
             <meta
               name="description"
               content={
-                product.description || "Descrição do produto não disponível"
+                product.description || "Somos a Mediewal, uma marca de roupas masculinas criada para quem quer se vestir bem e reinar no estilo. Inspirada no conceito de elegância  e confiança."
               }
             />
 
