@@ -527,6 +527,10 @@ const ProductDetails = () => {
     ? product.variations[activeColorIndex].urls.slice(startIndex, endIndex)
     : [];
 
+  // A URL canônica deve ser baseada no productId ou no name
+  const canonicalUrl = `https://mediewal.com.br/products/${name}/${productId} `;
+
+ console.log("canonicalUrl", canonicalUrl)
   return (
     <>
       <div className={styles.ProductDetailsContainer}>
@@ -553,7 +557,8 @@ const ProductDetails = () => {
               }
             />
 
-            
+<link rel="canonical" href={canonicalUrl} />
+
           </Helmet>
           {/* O restante do seu componente */}
           {/* {product && (
